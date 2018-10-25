@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 
 //component
-import  SelectLanguage  from "../../components/SelectLanguage";
+import  General  from "../../components/General";
 import NewAccount from "../../components/NewAccount";
 import Security from "../../components/Security";
 
@@ -12,7 +12,7 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route path='/' exact component={SelectLanguage} />
+            <Route path='/' exact component={General} />
             <Route path='/register' component={NewAccount} />
             <Route path='/security' component={Security} />
 
