@@ -15,10 +15,6 @@ class App extends Component {
             <Route path='/' exact component={General} />
             <Route path='/register' component={NewAccount} />
             <Route path='/security' component={Security} />
-
-            {/* <Route />
-            <Route />
-            <Route /> */}
           </Switch>
         </BrowserRouter>
       </div>
