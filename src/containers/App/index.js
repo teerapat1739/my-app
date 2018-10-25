@@ -3,6 +3,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom'
 
 //component
 import  SelectLanguage  from "../../components/SelectLanguage";
+import NewAccount from "../../components/NewAccount";
 
 class App extends Component {
   render() {
@@ -10,7 +11,9 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route path='/' component={SelectLanguage} />
+            <Route path='/' exact component={SelectLanguage} />
+            <Route path='/register' component={NewAccount} />
+
             {/* <Route />
             <Route />
             <Route /> */}
