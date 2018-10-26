@@ -20,6 +20,7 @@ const Form = styled.div`
     margin: 0px auto;
     padding-top: 20px;
     border-radius: 10px;
+    text-align: center;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
 `

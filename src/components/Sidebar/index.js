@@ -19,10 +19,10 @@ class SelectLanguage extends Component {
             </div>
             <div id='center' class="main center">
                 <div class="mainInner">
-                <div>PURE CSS SIDEBAR TOGGLE MENU</div>
+                <div>Fancy App</div>
                 </div>
                 <div class="mainInner">
-                <div>PURE CSS SIDEBAR TOGGLE MENU</div>
+                <div>Fancy App</div>
                 </div>
                 <div>{this.props.children}</div>
             </div>
