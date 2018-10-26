@@ -24,9 +24,7 @@ class SelectLanguage extends Component {
                 <div class="mainInner">
                 <div>PURE CSS SIDEBAR TOGGLE MENU</div>
                 </div>
-                <div class="mainInner">
                 <div>{this.props.children}</div>
-                </div>
             </div>
             </div>
         )
