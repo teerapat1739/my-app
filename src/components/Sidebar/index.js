@@ -18,12 +18,6 @@ class SelectLanguage extends Component {
                 </ul>
             </div>
             <div id='center' class="main center">
-                <div class="mainInner">
-                <div>Fancy App</div>
-                </div>
-                <div class="mainInner">
-                <div>Fancy App</div>
-                </div>
                 <div>{this.props.children}</div>
             </div>
             </div>
