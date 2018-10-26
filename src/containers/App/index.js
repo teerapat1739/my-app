@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 
 //component
-import  General  from "../../components/General";
-import NewAccount from "../../components/NewAccount";
-import Security from "../../components/Security";
+import  General  from "../General";
+import NewAccount from "../NewAccount";
+import Security from "../Security";
 
 class App extends Component {
   render() {
