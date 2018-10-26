@@ -5,6 +5,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import  General  from "../General";
 import NewAccount from "../NewAccount";
 import Security from "../Security";
+import Login from '../Login'
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
             <Route path='/' exact component={General} />
             <Route path='/register' component={NewAccount} />
             <Route path='/security' component={Security} />
+            <Route path='/login' component={Login} />
           </Switch>
         </BrowserRouter>
       </div>

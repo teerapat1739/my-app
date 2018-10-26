@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-
+import Sidebar from '../../components/Sidebar'
 class SelectLanguage extends Component {
     render() {
         return (
-            <div>SelectLanguage</div>
+            <Sidebar>
+                teerapat
+            </Sidebar>
         )
     }
 }
