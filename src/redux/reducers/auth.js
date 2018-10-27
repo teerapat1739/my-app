@@ -1,7 +1,9 @@
 export default (state = {}, action) => {
     switch (action.type) {
       case 'LOGIN':
-       alert('login')
+        const { email, password, confirmPassword } = action.data
+        console.log(email)
+        alert(email)
         return {
           uid: action.uid
         };

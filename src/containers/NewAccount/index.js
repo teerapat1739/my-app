@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import styled from "styled-components";
 import './index.css'
 
+import { connect } from 'react-redux'
+import { login } from '../../redux/actions/auth'
+
 const Box = styled.div`
     width: 800px;
     height: 340px;
@@ -61,18 +64,74 @@ const Submit = styled.input`
     }
 `
 class NewAccount extends Component {
+
+    state = {
+        email: '',
+        pasword: '',
+        confirmPassword: ''
+    }
+
+    onChangeEmail = (e) => {
+        const email = e.target.value
+        this.setState(() => ({ email }))
+    }
+
+    onChangePassword = (e) => {
+        const password = e.target.value
+        this.setState(() => ({ password }))
+    }
+
+    onChangeConfirmPassword = (e) => {
+        const confirmPassword = e.target.value
+        this.setState(() => ({ confirmPassword }))
+    }
+
+    onSubmit = () => {
+        const data = {
+            email: this.state.email,
+            password: this.state.pasword,
+            confirmPassword: this.state.confirmPassword
+        }
+        // alert(data.email)
+        this.props.login(data)
+    }
+
     render() {
         return (
             <Box>
                 <Form>
-                    <Input type="email" placeholder="Enter your email" />
-                    <Input type="password" placeholder="Password" />
-                    <Input type="password" placeholder="Password" />
-                    <Submit type="submit" value="Register" />
+                    <Input
+                        type="email"
+                        placeholder="Enter your email"
+                        autoFocus
+                        value={this.state.email}
+                        onChange={this.onChangeEmail}
+                    />
+                    <Input
+                        type="password"
+                        placeholder="Password"
+                        value={this.state.password}
+                        onChange={this.onChangePassword}
+                    />
+                    <Input
+                        type="password"
+                        placeholder="Password"
+                        value={this.state.confirmPassword}
+                        onChange={this.onChangeConfirmPassword}
+                    />
+                    <Submit
+                        type="submit"
+                        value="Register"
+                        onClick={this.onSubmit}
+                    />
                 </Form>
             </Box>
         )
     }
 }
 
-export default NewAccount;
+const mapDispatchToProps = (dispatch) => ({
+    login: (data) => dispatch(login(data))
+});
+
+export default connect(undefined, mapDispatchToProps)(NewAccount);
