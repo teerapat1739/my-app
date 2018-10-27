@@ -68,10 +68,13 @@ const Header = styled.h1`
     font-family: Arial;
     font-weight: normal;
     margin: 2em auto 0px;
-
-    
 `
 class NewAccount extends Component {
+
+    submit = () =>{
+        alert('xxx')
+    }
+
     render() {
         return (
             <Box>
@@ -79,7 +82,9 @@ class NewAccount extends Component {
                 <Form>
                     <Input type="email" placeholder="Enter your email" />
                     <Input type="password" placeholder="Password" />
-                    <Submit type="submit" value="Register" />
+                    <Submit type="submit" value="Login"
+                        onClick={this.submit}
+                        />
                     <Submit type="submit" value="Create NewAccount" />
                 </Form>
             </Box>
