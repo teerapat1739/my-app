@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import styled from "styled-components";
 // import './index.css'
-
+import { connect } from 'react-redux'
+import { login } from '../../redux/actions/auth'
 const Box = styled.div`
     width: 800px;
     height: 340px;
@@ -72,7 +73,7 @@ const Header = styled.h1`
 class NewAccount extends Component {
 
     submit = () =>{
-        alert('xxx')
+        this.props.login()
     }
 
     render() {
@@ -92,4 +93,8 @@ class NewAccount extends Component {
     }
 }
 
-export default NewAccount;
+const mapDispatchToProps = (dispatch) => ({
+    login: () => dispatch(login())
+})
+
+export default connect(undefined, mapDispatchToProps)(NewAccount);
