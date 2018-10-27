@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './index.css'
 import styled from "styled-components";
+import { NavLink } from 'react-router-dom'
 
 
 const HeaderNavbar = styled.div`
@@ -35,8 +36,8 @@ class SelectLanguage extends Component {
                     </label>
                     <div id="sidebarMenu">
                         <ul class="sidebarMenuInner">
-                        <li>General</li>
-                        <li>Security</li>
+                            <NavLink to='/'><li>General</li></NavLink>
+                            <NavLink to='/security'><li>Security</li></NavLink>
                         </ul>
                     </div>
                     <Content>
