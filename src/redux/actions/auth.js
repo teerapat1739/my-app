@@ -26,18 +26,14 @@ export const saveUser = (values) => {
     return async (dispatch) => {
         try {
             const results =  await axios.post('/users',values)
-            console.log(results.data.status)
-            if (results.data.status) {
-                alert('Somethis is wrong')
-                dispatch({ type: 'SAVE_USER_REJECTED', payload: results.data.message })
-            } else {
+            console.log(results.data)
                 alert('SAVE_USER_SUCCESS')
                 localStorage.setItem('login', true)
-                this.props.history.push('/')
-                dispatch({ type: 'SAVE_USER_SUCCESS' })
-            }
+                const { email } = results.data
+                dispatch({ type: 'SAVE_USER_SUCCESS', payload: email })
         } catch (error) {
-            alert('SAVE_USER_REJECTED')
+            console.log(error)
+            alert('SAVE_USER_REJECTEDss')
         }
     }
 }

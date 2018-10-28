@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import './index.css'
+import { connect } from 'react-redux'
 
 //component
 import Sidebar from '../../components/Sidebar'
 import BoxForm from '../../components/BoxForm'
-class SelectLanguage extends Component {
+class General extends Component {
     render() {
         return (
             <Sidebar>
                 <BoxForm>
                 <div class="p-left">
+                    <strong>{this.props.email}</strong>
                     <div class="header-general">Language</div>
                     <div class="styled-select rounded">
                         <select>
@@ -40,4 +42,12 @@ class SelectLanguage extends Component {
     }
 }
 
-export default SelectLanguage;
+const mapStateToProps = (state) => {
+    console.log(state);
+
+    return {
+        email: state.auth.data
+    }
+}
+
+export default connect(mapStateToProps)(General);
