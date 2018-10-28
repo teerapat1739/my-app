@@ -96,6 +96,8 @@ class NewAccount extends Component {
                 save: moment().format(),
                 email: this.state.email,
                 password: this.state.password,
+                language: '',
+                privacy: 1
             }
             // alert(data.email)
             // this.props.login(data)
