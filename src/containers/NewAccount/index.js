@@ -4,6 +4,7 @@ import './index.css'
 
 import { connect } from 'react-redux'
 import { login, saveUser } from '../../redux/actions/auth'
+import moment from 'moment'
 
 const Box = styled.div`
     width: 800px;
@@ -64,11 +65,14 @@ const Submit = styled.input`
     }
 `
 class NewAccount extends Component {
-
-    state = {
-        email: '',
-        pasword: '',
-        confirmPassword: ''
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: '',
+            pasword: '',
+            confirmPassword: ''
+        }
+        this.onSubmit = this.onSubmit.bind(this)
     }
 
     onChangeEmail = (e) => {
@@ -87,14 +91,19 @@ class NewAccount extends Component {
     }
 
     onSubmit = () => {
-        const data = {
-            email: this.state.email,
-            password: this.state.password,
-            confirmPassword: this.state.confirmPassword
+        if (this.state.password === this.state.confirmPassword) {
+            const data = {
+                save: moment().format(),
+                email: this.state.email,
+                password: this.state.password,
+            }
+            // alert(data.email)
+            // this.props.login(data)
+            this.props.saveUser(data)
+        } else{
+            alert('password not match')
         }
-        // alert(data.email)
-        // this.props.login(data)
-        this.props.saveUser(data)
+
     }
 
     render() {
