@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 
 import * as serviceWorker from './serviceWorker';
-const store = configureStore();
+const store = configureStore()
 
 const jsx = (
     <Provider store={store}>
@@ -14,6 +14,7 @@ const jsx = (
     </Provider>
   );
 
+// connectMongo()
 ReactDOM.render(jsx, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

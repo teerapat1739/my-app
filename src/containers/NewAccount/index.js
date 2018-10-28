@@ -3,7 +3,7 @@ import styled from "styled-components";
 import './index.css'
 
 import { connect } from 'react-redux'
-import { login } from '../../redux/actions/auth'
+import { login, saveUser } from '../../redux/actions/auth'
 
 const Box = styled.div`
     width: 800px;
@@ -89,11 +89,12 @@ class NewAccount extends Component {
     onSubmit = () => {
         const data = {
             email: this.state.email,
-            password: this.state.pasword,
+            password: this.state.password,
             confirmPassword: this.state.confirmPassword
         }
         // alert(data.email)
-        this.props.login(data)
+        // this.props.login(data)
+        this.props.saveUser(data)
     }
 
     render() {
@@ -131,7 +132,8 @@ class NewAccount extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    login: (data) => dispatch(login(data))
+    login: (data) => dispatch(login(data)),
+    saveUser: (data) => dispatch(saveUser(data))
 });
 
 export default connect(undefined, mapDispatchToProps)(NewAccount);

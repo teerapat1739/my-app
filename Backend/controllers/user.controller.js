@@ -1,9 +1,8 @@
 const User = require('../models/user.model')
-const jwt = require('jwt-simple')
-const config = require('../config')
 
 
 exports.create = (req, res, next) => {
+    console.log('create')
     User.findOne({ email: req.body.email }, (err, result) => {
         if (err) { return next(err); }
 

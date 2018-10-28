@@ -3,7 +3,7 @@ export default (state = {}, action) => {
       case 'LOGIN':
         const { email, password, confirmPassword } = action.data
         console.log(email)
-        alert(email)
+        // alert(email)
         return {
           uid: action.uid
         };
