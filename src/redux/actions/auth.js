@@ -1,5 +1,5 @@
 import axios from '../../axiosInstance'
-
+import { Redirect } from 'react-router-dom';
 
 export const login = (data) =>{
     console.log(data)
@@ -28,11 +28,13 @@ export const saveUser = (values) => {
             const results =  await axios.post('/users',values)
             console.log(results.data.status)
             if (results.data.status) {
-                alert('SAVE_USER_SUCCESS')
-                // dispatch({ type: 'SAVE_USER_REJECTED', payload: results.data.message })
+                alert('Somethis is wrong')
+                dispatch({ type: 'SAVE_USER_REJECTED', payload: results.data.message })
             } else {
-                alert('SAVE_USER_SUCCESS2')
-                // dispatch({ type: 'SAVE_USER_SUCCESS' })
+                alert('SAVE_USER_SUCCESS')
+                localStorage.setItem('login', true)
+                this.props.history.push('/')
+                dispatch({ type: 'SAVE_USER_SUCCESS' })
             }
         } catch (error) {
             alert('SAVE_USER_REJECTED')

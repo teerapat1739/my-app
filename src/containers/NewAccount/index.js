@@ -90,7 +90,7 @@ class NewAccount extends Component {
         this.setState(() => ({ confirmPassword }))
     }
 
-    onSubmit = () => {
+    onSubmit = async() => {
         if (this.state.password === this.state.confirmPassword) {
             const data = {
                 save: moment().format(),
@@ -99,9 +99,11 @@ class NewAccount extends Component {
                 language: '',
                 privacy: 1
             }
-            // alert(data.email)
-            // this.props.login(data)
-            this.props.saveUser(data)
+            const result = await this.props.saveUser(data)
+            if(localStorage.getItem('login')) {
+                this.props.history.push('/')
+            }
+            console.log(result)
         } else{
             alert('password not match')
         }
