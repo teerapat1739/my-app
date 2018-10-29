@@ -41,3 +41,33 @@ exports.update = (req, res, next) => {
         }
     })
 }
+
+exports.signin = (req, res, next) => {
+    User.findOne({ email: req.body.email }, (err, result) => {
+        if(err) {
+            console.log(err)
+            return next(err)
+        }
+        console.log(result)
+        if (result == null) {
+            console.log('xxxx')
+            res.json({
+                login: false,
+                message: 'No this account'
+            })
+        } else {
+            if (result.password === req.body.password) {
+                console.log(result.password === req.body.password)
+                res.json({
+                    ...result,
+                    login: true
+                })
+            }
+            else {
+                res.json({
+                    login: false
+                })
+            }
+        }
+    })
+}

@@ -6,6 +6,8 @@ module.exports = (app) => {
         res.send({ message: 'Fancy App' })
     })
 
+    app.post('/signin', user.signin)
+
     app.post('/users', user.create)
     app.put('/users', user.update)
 
