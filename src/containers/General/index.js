@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './index.css'
 import { connect } from 'react-redux'
 import styled from "styled-components";
+import { saveChangeDataUser } from '../../redux/actions/user'
 import { login, saveUser } from '../../redux/actions/auth'
 
 //component
@@ -139,7 +140,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    saveUser: (data) => dispatch(saveUser(data))
+    saveChangeDataUser: (data) => dispatch(saveChangeDataUser(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(General)
