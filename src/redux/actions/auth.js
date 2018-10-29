@@ -11,6 +11,8 @@ export const login = (data) => {
             } else {
                 if(result.data.login) {
                     localStorage.setItem('login', true)
+                    console.log(result.data._doc)
+                    dispatch({ type: 'LOAD_USER_SUCCESS', payload: result.data._doc })
                     dispatch({ type: 'LOGIN_UN_SUCCESS', payload: result.data._doc.email })
                 } else {
                     localStorage.setItem('login', result.data.login)
@@ -39,6 +41,7 @@ export const saveUser = (values) => {
             console.log(results.data)
                 alert('SAVE_USER_SUCCESS')
                 localStorage.setItem('login', true)
+                dispatch({ type: 'LOAD_USER_SUCCESS', payload: results.data })
                 dispatch({ type: 'SAVE_USER_SUCCESS', payload: results.data.email })
         } catch (error) {
             console.log(error)

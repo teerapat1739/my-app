@@ -3,7 +3,6 @@ import './index.css'
 import { connect } from 'react-redux'
 import styled from "styled-components";
 import { saveChangeDataUser } from '../../redux/actions/user'
-import { login, saveUser } from '../../redux/actions/auth'
 
 //component
 import Sidebar from '../../components/Sidebar'
@@ -43,8 +42,22 @@ class General extends Component {
     }
 
     componentWillMount () {
-        if (!(localStorage.getItem('login') || this.props.email)) {
+        // alert(this.props.email !== undefined)
+        if (!(this.props.email !== undefined)) {
             this.props.history.push('/login')
+        }
+    }
+
+    componentDidMount() {
+        // alert(this.props.email !== undefined)
+        if (!(this.props.email !== undefined)) {
+            // alert('here')
+            this.props.history.push('/login')
+        } else {
+            this.setState({
+                privacy:this.props.user.privacy,
+                language: this.props.user.language
+            })
         }
     }
     handleLanguageChange(event) {
@@ -52,7 +65,7 @@ class General extends Component {
     }
 
     handlePrivacyChange(event) {
-        this.setState({value: event.target.value})
+        this.setState({privacy: parseInt(event.target.value)})
     }
 
     handleSubmit = async (event) => {
@@ -103,7 +116,6 @@ class General extends Component {
                                     type="radio"
                                     checked={this.state.privacy === 1}
                                     value="1"
-                                    name="radio"
                                     onChange={this.handlePrivacyChange}
                                 />
                                 <span class="checkmark"></span>
@@ -112,7 +124,6 @@ class General extends Component {
                                 <input
                                     type="radio"
                                     value="0"
-                                    name="radio"
                                     onChange={this.handlePrivacyChange}
                                     checked={this.state.privacy === 0}
                                 />
@@ -132,10 +143,10 @@ class General extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.auth);
-    // const { email } = state.auth.data
+    console.log(state.user);
     return {
-        email: state.auth.data
+        email: state.auth.data,
+        user: state.user.data
     }
 }
 

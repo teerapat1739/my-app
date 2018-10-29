@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 
 import Sidebar from '../../components/Sidebar'
 import BoxForm from '../../components/BoxForm'
-import InputPassword from "../../components/InputPassword";
-import styled from "styled-components";
+import InputPassword from "../../components/InputPassword"
+import styled from "styled-components"
 import { connect } from 'react-redux'
+import { saveChangeDataUser } from '../../redux/actions/user'
+
 
 const Box = styled.div`
     width: 800px;
@@ -64,7 +66,7 @@ class Security extends Component {
         return (
         <Sidebar>
             <BoxForm>
-                <div class="header-general">Current password</div>
+                <div class="header-general">Current password{this.props.email}</div>
                 <InputPassword />
                 <div class="header-general">New Password</div>
                 <InputPassword />

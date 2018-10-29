@@ -8,6 +8,9 @@ import Security from "../Security";
 import Login from '../Login'
 
 class App extends Component {
+  componentWillMount() {
+    localStorage.removeItem('login')
+  }
   render() {
     return (
       <div>
