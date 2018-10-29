@@ -20,3 +20,26 @@ exports.create = (req, res, next) => {
         }
     })
 }
+
+exports.update = (req, res, next) => {
+    console.log('update')
+    console.log(req.body);
+
+    User.findOne({ email: req.body.email }, (err, results) => {
+        if (err) { return next(err) }   //ดักจับ error
+
+        if (results) {
+            User.findOneAndUpdate({ email: results.email }, req.body, { new: true }, (err, user) => {
+                if (err) {
+                    return next(err)
+                } else {
+                    res.json(user)
+                    // console.log(user)
+
+                }
+            })
+        } else {
+            console.log(err)
+        }
+    })
+}

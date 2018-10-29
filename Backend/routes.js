@@ -7,4 +7,6 @@ module.exports = (app) => {
     })
 
     app.post('/users', user.create)
+    app.put('/users', user.update)
+
 }
