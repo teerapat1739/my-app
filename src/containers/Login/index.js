@@ -79,6 +79,11 @@ class NewAccount extends Component {
             password: ''
         }
     }
+    componentWillMount() {
+        if(localStorage.getItem('login')) {
+            this.props.history.push('/')
+        }
+    }
     onChangeEmail = (e) => {
         const email = e.target.value
         this.setState(() => ({ email }))
@@ -103,7 +108,10 @@ class NewAccount extends Component {
             console.log(error)
         }
     }
-
+    onCreateNewAccount = (event) => {
+        event.preventDefault();
+        this.props.history.push('/register')
+    }
     render() {
         return (
             <Box>
@@ -127,8 +135,12 @@ class NewAccount extends Component {
                         value="Login"
                         onClick={this.onSubmit}
                     />
-                    <Submit type="submit" value="Create NewAccount" />
                 </form>
+                <Submit
+                    type="submit"
+                    value="Create NewAccount"
+                    onClick={this.onCreateNewAccount}
+                 />
                 </Form>
             </Box>
         )
