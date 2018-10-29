@@ -30,7 +30,7 @@ const Submit = styled.input`
 `
 class General extends Component {
     constructor(props) {
-    super(props);
+    super(props)
     this.state = {
             language: 'thai',
             privacy: 0
@@ -42,6 +42,11 @@ class General extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    componentWillMount () {
+        if (!(localStorage.getItem('login') || this.props.email)) {
+            this.props.history.push('/login')
+        }
+    }
     handleLanguageChange(event) {
         this.setState({language: event.target.value})
     }
@@ -68,6 +73,7 @@ class General extends Component {
         }
         else {
             localStorage.removeItem('login')
+            this.props.history.push('/login')
         }
     }
 
@@ -127,7 +133,7 @@ class General extends Component {
 
 const mapStateToProps = (state) => {
     console.log(state.auth);
-
+    // const { email } = state.auth.data
     return {
         email: state.auth.data
     }

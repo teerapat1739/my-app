@@ -3,7 +3,7 @@ import styled from "styled-components";
 import './index.css'
 
 import { connect } from 'react-redux'
-import { login, saveUser } from '../../redux/actions/auth'
+import { saveUser } from '../../redux/actions/auth'
 import moment from 'moment'
 
 const Box = styled.div`
@@ -93,7 +93,7 @@ class NewAccount extends Component {
     onSubmit = async() => {
         if (this.state.password === this.state.confirmPassword) {
             const data = {
-                save: moment().format(),
+                currentSave: moment().format(),
                 email: this.state.email,
                 password: this.state.password,
                 language: '',
@@ -145,8 +145,7 @@ class NewAccount extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    login: (data) => dispatch(login(data)),
     saveUser: (data) => dispatch(saveUser(data))
 });
 
-export default connect(undefined, mapDispatchToProps)(NewAccount);
+export default connect(undefined, mapDispatchToProps)(NewAccount)

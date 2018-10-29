@@ -4,6 +4,7 @@ import Sidebar from '../../components/Sidebar'
 import BoxForm from '../../components/BoxForm'
 import InputPassword from "../../components/InputPassword";
 import styled from "styled-components";
+import { connect } from 'react-redux'
 
 const Box = styled.div`
     width: 800px;
@@ -50,6 +51,15 @@ const Submit = styled.input`
 `
 
 class Security extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    componentWillMount () {
+        if (!(localStorage.getItem('login') || this.props.email)) {
+            this.props.history.push('/login')
+        }
+    }
     render() {
         return (
         <Sidebar>
@@ -79,4 +89,12 @@ class Security extends Component {
     }
 }
 
-export default Security;
+const mapStateToProps = (state) => {
+    console.log(state.auth);
+
+    return {
+        email: state.auth.data
+    }
+}
+
+export default connect(mapStateToProps)(Security);

@@ -1,16 +1,27 @@
 import axios from '../../axiosInstance'
 
-export const login = (data) =>{
-    console.log(data)
-    return(
-            {
-                type: 'LOGIN',
-                data
+export const login = (data) => {
+    alert('login')
+    return async (dispatch) => {
+        try {
+            const result = await axios.post('/signin', data)
+            console.log(result.data._doc)
+            if (result.data.message === 'No this account') {
+                alert(result.data.message)
+            } else {
+                if(result.data.login) {
+                    localStorage.setItem('login', true)
+                    dispatch({ type: 'LOGIN_UN_SUCCESS', payload: result.data._doc.email })
+                } else {
+                    localStorage.setItem('login', result.data.login)
+                    dispatch({ type: 'LOGIN_SUCCESS', payload: result.data })
+                }
             }
-    )
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
-
-
   export const logout = () => ({
     type: 'LOGOUT'
   });
@@ -28,8 +39,7 @@ export const saveUser = (values) => {
             console.log(results.data)
                 alert('SAVE_USER_SUCCESS')
                 localStorage.setItem('login', true)
-                const { email } = results.data
-                dispatch({ type: 'SAVE_USER_SUCCESS', payload: email })
+                dispatch({ type: 'SAVE_USER_SUCCESS', payload: results.data.email })
         } catch (error) {
             console.log(error)
             dispatch({ type: 'SAVE_USER_REJECTEDss'})
@@ -37,4 +47,3 @@ export const saveUser = (values) => {
         }
     }
 }
-

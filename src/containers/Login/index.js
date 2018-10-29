@@ -3,6 +3,7 @@ import styled from "styled-components";
 // import './index.css'
 import { connect } from 'react-redux'
 import { login } from '../../redux/actions/auth'
+
 const Box = styled.div`
     width: 800px;
     height: 340px;
@@ -71,9 +72,36 @@ const Header = styled.h1`
     margin: 2em auto 0px;
 `
 class NewAccount extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
+    onChangeEmail = (e) => {
+        const email = e.target.value
+        this.setState(() => ({ email }))
+    }
 
-    submit = () =>{
-        this.props.login()
+    onChangePassword = (e) => {
+        const password = e.target.value
+        this.setState(() => ({ password }))
+    }
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        alert(this.state.password)
+        const data = {
+            email: this.state.email,
+            password: this.state.password
+        }
+        try {
+            const result = await this.props.login(data)
+            console.log(result)
+            this.props.history.push('/')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     render() {
@@ -81,12 +109,26 @@ class NewAccount extends Component {
             <Box>
                  <Header>Fancy App</Header>
                 <Form>
-                    <Input type="email" placeholder="Enter your email" />
-                    <Input type="password" placeholder="Password" />
-                    <Submit type="submit" value="Login"
-                        onClick={this.submit}
-                        />
+                <form onSubmit={this.handleSubmit}>
+                    <Input
+                        type="email"
+                        placeholder="Enter your email"
+                        value={this.state.email}
+                        onChange={this.onChangeEmail}
+                    />
+                    <Input
+                        type="password"
+                        placeholder="Password"
+                        value={this.state.password}
+                        onChange={this.onChangePassword}
+                    />
+                    <Submit
+                        type="submit"
+                        value="Login"
+                        onClick={this.onSubmit}
+                    />
                     <Submit type="submit" value="Create NewAccount" />
+                </form>
                 </Form>
             </Box>
         )
@@ -94,7 +136,7 @@ class NewAccount extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    login: () => dispatch(login())
+    login: (data) => dispatch(login(data))
 })
 
 export default connect(undefined, mapDispatchToProps)(NewAccount);
