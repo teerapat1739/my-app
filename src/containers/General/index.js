@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './index.css'
 import { connect } from 'react-redux'
 import styled from "styled-components";
+import { saveChangeDataUser } from '../../redux/actions/user'
+import { login, saveUser } from '../../redux/actions/auth'
 
 //component
 import Sidebar from '../../components/Sidebar'
@@ -48,11 +50,26 @@ class General extends Component {
         this.setState({value: event.target.value})
     }
 
-    handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value)
+    handleSubmit = async (event) => {
+        alert('A name was submitted: ' + this.props.email)
         event.preventDefault();
+        if (localStorage.getItem('login') && this.props.email) {
+            const data = {
+                email: this.props.email,
+                privacy: parseInt(this.state.privacy),
+                language: this.state.language
+            }
+            try {
+                const result = await this.props.saveChangeDataUser(data)
+                console.log(result)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        else {
+            localStorage.removeItem('login')
+        }
     }
-
 
     render() {
         return (
@@ -78,9 +95,8 @@ class General extends Component {
                             <label class="text-radio">Public
                                 <input
                                     type="radio"
-                                    checked="checked"
                                     checked={this.state.privacy === 1}
-                                    value="public"
+                                    value="1"
                                     name="radio"
                                     onChange={this.handlePrivacyChange}
                                 />
@@ -89,7 +105,7 @@ class General extends Component {
                             <label class="text-radio">Private
                                 <input
                                     type="radio"
-                                    value="private"
+                                    value="0"
                                     name="radio"
                                     onChange={this.handlePrivacyChange}
                                     checked={this.state.privacy === 0}
@@ -110,11 +126,15 @@ class General extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
+    console.log(state.auth);
 
     return {
         email: state.auth.data
     }
 }
 
-export default connect(mapStateToProps)(General);
+const mapDispatchToProps = (dispatch) => ({
+    saveChangeDataUser: (data) => dispatch(saveChangeDataUser(data))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(General)

@@ -1,5 +1,4 @@
 import axios from '../../axiosInstance'
-import { Redirect } from 'react-router-dom';
 
 export const login = (data) =>{
     console.log(data)
@@ -33,6 +32,7 @@ export const saveUser = (values) => {
                 dispatch({ type: 'SAVE_USER_SUCCESS', payload: email })
         } catch (error) {
             console.log(error)
+            dispatch({ type: 'SAVE_USER_REJECTEDss'})
             alert('SAVE_USER_REJECTEDss')
         }
     }

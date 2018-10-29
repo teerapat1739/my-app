@@ -1,6 +1,4 @@
 const User = require('../models/user.model')
-
-
 //ฟังก์ชันสร้างข้อมูลผู้ใช้ใหม่
 exports.create = (req, res, next) => {
     console.log(req.body)
