@@ -10,5 +10,6 @@ module.exports = (app) => {
 
     app.post('/users', user.create)
     app.put('/users', user.update)
+    app.put('/users/security', user.changePassword)
 
 }

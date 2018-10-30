@@ -13,10 +13,10 @@ export const login = (data) => {
                     localStorage.setItem('login', true)
                     console.log(result.data._doc)
                     dispatch({ type: 'LOAD_USER_SUCCESS', payload: result.data._doc })
-                    dispatch({ type: 'LOGIN_UN_SUCCESS', payload: result.data._doc.email })
+                    dispatch({ type: 'LOGIN_SUCCESS', payload: result.data._doc.email })
                 } else {
                     localStorage.setItem('login', result.data.login)
-                    dispatch({ type: 'LOGIN_SUCCESS', payload: result.data })
+                    dispatch({ type: 'LOGIN_UN_SUCCESS', payload: result.data })
                 }
             }
         } catch (error) {

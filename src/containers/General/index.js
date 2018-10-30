@@ -42,7 +42,6 @@ class General extends Component {
     }
 
     componentWillMount () {
-        // alert(this.props.email !== undefined)
         if (!(this.props.email !== undefined)) {
             this.props.history.push('/login')
         }
@@ -55,7 +54,7 @@ class General extends Component {
             this.props.history.push('/login')
         } else {
             this.setState({
-                privacy:this.props.user.privacy,
+                privacy: this.props.user.privacy,
                 language: this.props.user.language
             })
         }
@@ -77,6 +76,7 @@ class General extends Component {
                 privacy: parseInt(this.state.privacy),
                 language: this.state.language
             }
+            console.log(data);
             try {
                 const result = await this.props.saveChangeDataUser(data)
                 console.log(result)
@@ -114,7 +114,7 @@ class General extends Component {
                             <label class="text-radio">Public
                                 <input
                                     type="radio"
-                                    checked={this.state.privacy === 1}
+                                    checked={ this.state.privacy === 1}
                                     value="1"
                                     onChange={this.handlePrivacyChange}
                                 />
@@ -125,7 +125,7 @@ class General extends Component {
                                     type="radio"
                                     value="0"
                                     onChange={this.handlePrivacyChange}
-                                    checked={this.state.privacy === 0}
+                                    checked={ this.state.privacy === 0 }
                                 />
                                 <span class="checkmark"></span>
                             </label>

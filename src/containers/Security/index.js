@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 
 import Sidebar from '../../components/Sidebar'
 import BoxForm from '../../components/BoxForm'
-import InputPassword from "../../components/InputPassword"
 import styled from "styled-components"
 import { connect } from 'react-redux'
-import { saveChangeDataUser } from '../../redux/actions/user'
+import { saveChangePasswordUser } from '../../redux/actions/user'
 
 
 const Box = styled.div`
@@ -19,6 +18,24 @@ const Box = styled.div`
         background: palevioletred;
     }
 `;
+
+
+const Input = styled.input`
+    display: block;
+    width: 309px;
+    height: 35px;
+    margin: 15px auto;
+    background: #fff;
+    border: 0px;
+    padding: 5px;
+    font-size: 16px;
+    border: 2px solid #fff;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+  `;
+
 const Form = styled.div`
     width: 370px;
     height: auto;
@@ -55,6 +72,11 @@ const Submit = styled.input`
 class Security extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            currentPassword: '',
+            newPassword: '',
+            confirmNewPassword: ''
+        }
     }
 
     componentWillMount () {
@@ -62,15 +84,77 @@ class Security extends Component {
             this.props.history.push('/login')
         }
     }
+
+    onChangeCurrentPassword = (event) => {
+        this.setState({
+            currentPassword: event.target.value
+        })
+    }
+
+    onChangeNewPassword = (event) => {
+        this.setState({
+            newPassword: event.target.value
+        })
+    }
+
+    onChangeNewPasswordConfirm = (event) => {
+        this.setState({
+            confirmNewPassword: event.target.value
+        })
+        console.log(this.state.confirmNewPassword);
+
+    }
+
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        if(this.state.confirmNewPassword === this.state.newPassword) {
+            const data = {
+                password: this.state.currentPassword,
+                newPassword: this.state.newPassword,
+                email: this.props.email
+            }
+            console.log(data)
+            try {
+                const result = await this.props.saveChangePasswordUser(data)
+                console.log(result)
+
+            } catch (error) {
+                console.log(error)
+            }
+
+        } else {
+            alert('new password not match')
+        }
+    }
+
     render() {
         return (
         <Sidebar>
             <BoxForm>
-                <div class="header-general">Current password{this.props.email}</div>
-                <InputPassword />
-                <div class="header-general">New Password</div>
-                <InputPassword />
-                <InputPassword />
+                <form onSubmit={this.handleSubmit}>
+                    <div class="header-general">Current password{this.props.email}</div>
+                    <Input
+                        type="password"
+                        value={this.state.currentPassword}
+                        onChange={this.onChangeCurrentPassword}
+                    />
+                    <div class="header-general">New Password</div>
+                    <Input
+                        type="password"
+                        value={this.state.newPassword}
+                        onChange={this.onChangeNewPassword}
+                    />
+                    <Input
+                        type="password"
+                        value={this.state.confirmNewPassword}
+                        onChange={this.onChangeNewPasswordConfirm}
+                    />
+                    <Submit
+                        type="submit"
+                        value="Save"
+                        onClick={this.handleSubmit}
+                     />
+                </form>
             </BoxForm>
             <Box>
                 <Form>
@@ -99,4 +183,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Security);
+const mapDispatchToProps = (dispatch) => ({
+    saveChangePasswordUser: (data) => dispatch(saveChangePasswordUser(data))
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Security);

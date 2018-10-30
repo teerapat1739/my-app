@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Box = styled.div`
     width: 800px;
-    height: 340px;
+    height: auto;
     background: #1abc9d;
     margin: 0px auto;
     padding-top: 80px;
@@ -15,7 +15,7 @@ const Box = styled.div`
 `;
 const Form = styled.div`
     width: 400px;
-    height: 300px;
+    height: auto;
     background: #edeff1;
     margin: 0px auto;
     padding-top: 20px;

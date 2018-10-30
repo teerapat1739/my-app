@@ -133,7 +133,7 @@ class NewAccount extends Component {
                     <Submit
                         type="submit"
                         value="Login"
-                        onClick={this.onSubmit}
+                        onClick={this.handleSubmit}
                     />
                 </form>
                 <Submit

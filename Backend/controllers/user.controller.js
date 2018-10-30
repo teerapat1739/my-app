@@ -25,9 +25,32 @@ exports.update = (req, res, next) => {
 
     User.findOne({ email: req.body.email }, (err, results) => {
         if (err) { return next(err) }   //ดักจับ error
-
         if (results) {
             User.findOneAndUpdate({ email: results.email }, req.body, { new: true }, (err, user) => {
+                if (err) {
+                    return next(err)
+                } else {
+                    res.json(user)
+                    // console.log(user)
+
+                }
+            })
+        } else {
+            console.log(err)
+        }
+    })
+}
+
+
+exports.changePassword = (req, res, next) => {
+    console.log('update')
+    console.log(req.body);
+
+    User.findOne({ email: req.body.email }, (err, results) => {
+        console.log(results)
+        if (err) { return next(err) }   //ดักจับ error
+        if (results.password === req.body.password) {
+            User.findOneAndUpdate({ email: results.email }, { password: req.body.newPassword }, { new: true }, (err, user) => {
                 if (err) {
                     return next(err)
                 } else {
