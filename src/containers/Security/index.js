@@ -4,7 +4,7 @@ import Sidebar from '../../components/Sidebar'
 import BoxForm from '../../components/BoxForm'
 import styled from "styled-components"
 import { connect } from 'react-redux'
-import { saveChangePasswordUser } from '../../redux/actions/user'
+import { saveChangePasswordUser, deleteUserAccount } from '../../redux/actions/user'
 
 
 const Box = styled.div`
@@ -127,6 +127,18 @@ class Security extends Component {
         }
     }
 
+    onClickDeleteAccount = async (event) => {
+        event.preventDefault()
+        try {
+            const result = await this.props.deleteUserAccount({
+                email: this.props.email
+            })
+        } catch (error) {
+            console.log(error)
+
+        }
+    }
+
     render() {
         return (
         <Sidebar>
@@ -137,17 +149,20 @@ class Security extends Component {
                         type="password"
                         value={this.state.currentPassword}
                         onChange={this.onChangeCurrentPassword}
+                        placeholder="Enter password"
                     />
                     <div class="header-general">New Password</div>
                     <Input
                         type="password"
                         value={this.state.newPassword}
                         onChange={this.onChangeNewPassword}
+                        placeholder="Enter password"
                     />
                     <Input
                         type="password"
                         value={this.state.confirmNewPassword}
                         onChange={this.onChangeNewPasswordConfirm}
+                        placeholder="Enter password"
                     />
                     <Submit
                         type="submit"
@@ -167,7 +182,11 @@ class Security extends Component {
                         </p>
                     </div>
 
-                   <Submit type="submit" value="Delete this Account" />
+                   <Submit
+                        type="submit"
+                        value="Delete this Account"
+                        onClick={this.onClickDeleteAccount}
+                        />
                 </Form>
             </Box>
         </Sidebar>
@@ -184,7 +203,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    saveChangePasswordUser: (data) => dispatch(saveChangePasswordUser(data))
+    saveChangePasswordUser: (data) => dispatch(saveChangePasswordUser(data)),
+    deleteUserAccount: (data) => dispatch(deleteUserAccount(data))
 });
 
 

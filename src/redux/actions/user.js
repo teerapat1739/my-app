@@ -33,3 +33,18 @@ export const saveChangePasswordUser = (data) => {
         }
     }
 }
+
+export const deleteUserAccount = (data) => {
+    console.log('action --> deleteUserAccount ')
+    console.log(data);
+
+    return async (dispatch) => {
+        try {
+            const results = await axios.post('/users/delete', data)
+            console.log(results)
+            alert(results.data.message)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}

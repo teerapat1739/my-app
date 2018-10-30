@@ -94,3 +94,18 @@ exports.signin = (req, res, next) => {
         }
     })
 }
+
+exports.delete = (req, res, next) => {
+    console.log('delete')
+    console.log(req.body)
+    User.findOneAndRemove({ email: req.body.email}, (err, result) => {
+        if (err) {
+            return next(err)
+        } else {
+            res.json({
+                ...result,
+                message: 'delete account success'
+            })
+        }
+    })
+}
