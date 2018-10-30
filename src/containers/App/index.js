@@ -9,7 +9,7 @@ import Login from '../Login'
 
 class App extends Component {
   componentWillMount() {
-    localStorage.removeItem('login')
+    localStorage.setItem('login', false)
   }
   render() {
     return (

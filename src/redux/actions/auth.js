@@ -1,7 +1,6 @@
 import axios from '../../axiosInstance'
 
 export const login = (data) => {
-    alert('login')
     return async (dispatch) => {
         try {
             const result = await axios.post('/signin', data)
@@ -16,6 +15,7 @@ export const login = (data) => {
                     dispatch({ type: 'LOGIN_SUCCESS', payload: result.data._doc.email })
                 } else {
                     localStorage.setItem('login', result.data.login)
+                    alert('password is wrong')
                     dispatch({ type: 'LOGIN_UN_SUCCESS', payload: result.data })
                 }
             }

@@ -79,11 +79,11 @@ class NewAccount extends Component {
             password: ''
         }
     }
-    componentWillMount() {
-        if(localStorage.getItem('login')) {
-            this.props.history.push('/')
-        }
-    }
+    // componentDidMount() {
+    //     if(localStorage.getItem('login')) {
+    //         this.props.history.push('/')
+    //     }
+    // }
     onChangeEmail = (e) => {
         const email = e.target.value
         this.setState(() => ({ email }))
@@ -95,7 +95,6 @@ class NewAccount extends Component {
     }
     handleSubmit = async (event) => {
         event.preventDefault();
-        alert(this.state.password)
         const data = {
             email: this.state.email,
             password: this.state.password
@@ -103,7 +102,9 @@ class NewAccount extends Component {
         try {
             const result = await this.props.login(data)
             console.log(result)
-            this.props.history.push('/')
+            if(localStorage.getItem('login') === 'true') {
+                this.props.history.push('/')
+            }
         } catch (error) {
             console.log(error)
         }

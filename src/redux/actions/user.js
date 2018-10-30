@@ -10,7 +10,6 @@ export const saveChangeDataUser = (data) => {
             alert('UPDATE_USER_SUCCESS')
             dispatch({ type: 'UPDATE_USER_SUCCESS', payload: results.data })
             console.log(results)
-            alert('success')
         } catch (error) {
             console.log(error)
             alert('something is wrong')

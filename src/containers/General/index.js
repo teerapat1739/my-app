@@ -48,9 +48,7 @@ class General extends Component {
     }
 
     componentDidMount() {
-        // alert(this.props.email !== undefined)
         if (!(this.props.email !== undefined)) {
-            // alert('here')
             this.props.history.push('/login')
         } else {
             this.setState({
@@ -85,7 +83,7 @@ class General extends Component {
             }
         }
         else {
-            localStorage.removeItem('login')
+            localStorage.setItem('login', false)
             this.props.history.push('/login')
         }
     }
