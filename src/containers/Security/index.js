@@ -80,7 +80,8 @@ class Security extends Component {
     }
 
     componentWillMount () {
-        if (!(localStorage.getItem('login') || this.props.email)) {
+       if(localStorage.getItem('login') === 'false')
+        {
             this.props.history.push('/login')
         }
     }
@@ -117,7 +118,12 @@ class Security extends Component {
             try {
                 const result = await this.props.saveChangePasswordUser(data)
                 console.log(result)
-
+                if(localStorage.getItem('login') === 'false')
+                {
+                    this.props.history.push('/login')
+                } else {
+                    this.props.history.push('/')
+                }
             } catch (error) {
                 console.log(error)
             }
@@ -133,6 +139,12 @@ class Security extends Component {
             const result = await this.props.deleteUserAccount({
                 email: this.props.email
             })
+            if(localStorage.getItem('login') === 'false')
+            {
+                this.props.history.push('/login')
+            } else {
+                this.props.history.push('/')
+            }
         } catch (error) {
             console.log(error)
 

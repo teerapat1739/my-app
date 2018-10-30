@@ -25,6 +25,7 @@ export const saveChangePasswordUser = (data) => {
             const results = await axios.put('/users/security',data)
             console.log(results.data)
             alert('UPDATE_USER_PASSAWORD_SUCCESS')
+            localStorage.setItem('login', false)
             dispatch({ type: 'UPDATE_USER_SUCCESS', payload: results.data })
             console.log(results)
         } catch (error) {
@@ -41,6 +42,7 @@ export const deleteUserAccount = (data) => {
         try {
             const results = await axios.post('/users/delete', data)
             console.log(results)
+            localStorage.setItem('login', false)
             alert(results.data.message)
         } catch (error) {
             console.log(error)
