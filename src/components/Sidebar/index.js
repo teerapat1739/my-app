@@ -29,6 +29,15 @@ const Content = styled.div`
 
 
 class SelectLanguage extends Component {
+    constructor(props) {
+        super(props)
+        this.onLogout = this.onLogout.bind(this)
+    }
+    onLogout = (event) => {
+        event.preventDefault();
+        localStorage.setItem('login', false)
+        window.location.reload(true);
+    }
     render() {
         return (
             <div>
@@ -43,6 +52,7 @@ class SelectLanguage extends Component {
                         <ul class="sidebarMenuInner">
                             <NavLink to='/'><li>General</li></NavLink>
                             <NavLink to='/security'><li>Security</li></NavLink>
+                            <a onClick={this.onLogout}><li>Logout</li></a>
                         </ul>
                     </div>
                     <Content>
