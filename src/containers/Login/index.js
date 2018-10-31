@@ -5,15 +5,11 @@ import { connect } from 'react-redux'
 import { login } from '../../redux/actions/auth'
 
 const Box = styled.div`
-    width: 800px;
-    height: 340px;
+    width: 100%;
+    height: 100%;
     background: #1abc9d;
     margin: 0px auto;
     padding-top: 80px;
-
-    @media (max-width: 700px) {
-        background: palevioletred;
-    }
 `;
 
 const Form = styled.div`
@@ -41,6 +37,8 @@ const Input = styled.input`
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+
+
   `;
 
 const Submit = styled.input`
@@ -62,6 +60,7 @@ const Submit = styled.input`
     &:hover {
         background: #09cca6
     }
+
 `
 
 const Header = styled.h1`

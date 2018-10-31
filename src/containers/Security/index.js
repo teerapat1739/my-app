@@ -8,15 +8,17 @@ import { saveChangePasswordUser, deleteUserAccount } from '../../redux/actions/u
 
 
 const Box = styled.div`
-    width: 800px;
-    height: 340px;
+    width: 500px;
+    height: 200px;
     background: #1abc9d;
     margin: 0px auto;
     padding-top: 20px;
+    text-align: center;
 
-    @media (max-width: 700px) {
-        background: palevioletred;
+    @media (max-width: 768px) {
+        width: 100%;
     }
+
 `;
 
 
@@ -34,19 +36,26 @@ const Input = styled.input`
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+
+    @media (max-width: 768px) {
+        width: 400px;
+    }
   `;
 
 const Form = styled.div`
-    width: 370px;
     height: auto;
     background: #edeff1;
     margin: 0px auto;
     padding: 10px 10px 10px 20px;
     border-radius: 10px;
-    text-align: left;
+    text-align: center;
     font-size: 15px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
+
+    @media (max-width: 768px) {
+        font-size: 10px;
+    }
 `
 
 const Submit = styled.input`
@@ -67,6 +76,11 @@ const Submit = styled.input`
     &:hover {
         background: #09cca6
     }
+
+    @media (max-width: 768px) {
+        font-size: 10px;
+        width: 250px;
+    }
 `
 
 class Security extends Component {
@@ -80,8 +94,7 @@ class Security extends Component {
     }
 
     componentWillMount () {
-       if(localStorage.getItem('login') === 'false')
-        {
+       if(localStorage.getItem('login') === 'false') {
             this.props.history.push('/login')
         }
     }
@@ -156,7 +169,7 @@ class Security extends Component {
         <Sidebar>
             <BoxForm>
                 <form onSubmit={this.handleSubmit}>
-                    <div class="header-general">Current password{this.props.email}</div>
+                    <div class="header-general">Current password of {this.props.email}</div>
                     <Input
                         type="password"
                         value={this.state.currentPassword}

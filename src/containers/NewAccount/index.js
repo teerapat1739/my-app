@@ -7,14 +7,15 @@ import { saveUser } from '../../redux/actions/auth'
 import moment from 'moment'
 
 const Box = styled.div`
-    width: 800px;
-    height: 340px;
+    width: 500px;
+    height: 200px;
     background: #1abc9d;
     margin: 0px auto;
-    padding-top: 80px;
+    padding-top: 20px;
+    text-align: center;
 
-    @media (max-width: 700px) {
-        background: palevioletred;
+    @media (max-width: 768px) {
+        width: 100%;
     }
 `;
 
@@ -114,6 +115,7 @@ class NewAccount extends Component {
         return (
             <Box>
                 <Form>
+                    <strong>Create NewAccount</strong>
                     <Input
                         type="email"
                         placeholder="Enter your email"

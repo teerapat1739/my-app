@@ -13,13 +13,18 @@ const HeaderNavbar = styled.div`
     background-color: #FC466B;
     position: fixed;
     height: 60px!important;
+
 `
 
 const Content = styled.div`
-    margin: 0 auto;
     display: block;
     height: 100%;
     margin-top: 60px;
+    text-align: center;
+
+    @media (max-width: 700px) {
+        margin-top: 0px;
+    }
 `
 
 

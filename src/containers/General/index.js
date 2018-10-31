@@ -26,6 +26,9 @@ const Submit = styled.input`
     &:hover {
         background: #09cca6
     }
+    @media (max-width: 700px) {
+        width: 250px;
+    }
 `
 class General extends Component {
     constructor(props) {

@@ -4,17 +4,17 @@ import styled from "styled-components";
 
 const Box = styled.div`
     width: 800px;
-    height: auto;
+    height: 100%;
     background: #1abc9d;
     margin: 0px auto;
     padding-top: 80px;
 
     @media (max-width: 700px) {
-        background: palevioletred;
+        width: 100%;
     }
 `;
 const Form = styled.div`
-    width: 400px;
+    width: 500px;
     height: auto;
     background: #edeff1;
     margin: 0px auto;
@@ -23,6 +23,10 @@ const Form = styled.div`
     text-align: center;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `
 class BoxForm extends Component {
     render () {
