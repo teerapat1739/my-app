@@ -10,3 +10,7 @@
      * npm install
      * npm start
      run `code` on `localhost:8000`.
+
+#  Test Project with Cypress.io
+1. npm run cypress
+2. run one by one file test
