@@ -29,6 +29,5 @@ before(function () {
     .type('cccc').should('have.value', 'cccc');
     cy.get('input[type="submit"]')
     .contains('Login').click();
-
   })
 })
