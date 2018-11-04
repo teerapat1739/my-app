@@ -81,6 +81,7 @@ class General extends Component {
             try {
                 const result = await this.props.saveChangeDataUser(data)
                 console.log(result)
+                alert('Save data success')
             } catch (error) {
                 console.log(error)
             }
