@@ -25,8 +25,8 @@ context('Security page', () => {
     //     .contains('Login').click();
     //  })
 
-     it('Delete Account', () => {
-        cy.get('input[type="submit"]')
-        .contains('Delete this Account').click();
-     })
+    //  it('Delete Account', () => {
+    //     cy.get('input[type="submit"]')
+    //     .contains('Delete this Account').click();
+    //  })
 })
