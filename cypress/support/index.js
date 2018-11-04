@@ -14,7 +14,21 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+// import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+
+before(function () {
+  context('Login', () => {
+    cy.visit('/login');
+    cy.get('input[type="email"]')
+    .type('game@yopmail.com').should('have.value', 'game@yopmail.com');
+    cy.get('input[type="password"]')
+    .type('aaaa').should('have.value', 'aaaa');
+    cy.get('input[type="submit"]')
+    .contains('Login').click();
+
+  })
+})
