@@ -13,4 +13,5 @@
 
 #  Test Project with Cypress.io
 1. npm run cypress
+3. you must create account and fill your account in cypress/support/index.js
 2. run one by one file test

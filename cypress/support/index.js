@@ -24,8 +24,11 @@ before(function () {
   context('Login', () => {
     cy.visit('/login');
     cy.get('input[type="email"]')
+    // change your email  account replace game@yopmail.com
     .type('game@yopmail.com').should('have.value', 'game@yopmail.com');
     cy.get('input[type="password"]')
+    // change your password account replace cccc
+
     .type('cccc').should('have.value', 'cccc');
     cy.get('input[type="submit"]')
     .contains('Login').click();
