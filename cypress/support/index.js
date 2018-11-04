@@ -26,7 +26,7 @@ before(function () {
     cy.get('input[type="email"]')
     .type('game@yopmail.com').should('have.value', 'game@yopmail.com');
     cy.get('input[type="password"]')
-    .type('aaaa').should('have.value', 'aaaa');
+    .type('bbbb').should('have.value', 'bbbb');
     cy.get('input[type="submit"]')
     .contains('Login').click();
 
