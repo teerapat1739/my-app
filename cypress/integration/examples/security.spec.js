@@ -14,14 +14,19 @@ context('Security page', () => {
         .type('cccc').should('have.value', 'cccc');
      })
 
-     it('save password and login again', () => {
+    //  it('save password and login again', () => {
+    //     cy.get('input[type="submit"]')
+    //     .contains('Save').click();
+    //     cy.get('input[type="email"]')
+    //     .type('game@yopmail.com').should('have.value', 'game@yopmail.com');
+    //     cy.get('input[type="password"]')
+    //     .type('cccc').should('have.value', 'cccc');
+    //     cy.get('input[type="submit"]')
+    //     .contains('Login').click();
+    //  })
+
+     it('Delete Account', () => {
         cy.get('input[type="submit"]')
-        .contains('Save').click();
-        cy.get('input[type="email"]')
-        .type('game@yopmail.com').should('have.value', 'game@yopmail.com');
-        cy.get('input[type="password"]')
-        .type('cccc').should('have.value', 'cccc');
-        cy.get('input[type="submit"]')
-        .contains('Login').click();
+        .contains('Delete this Account').click();
      })
 })
